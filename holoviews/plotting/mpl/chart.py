@@ -10,7 +10,7 @@ import param
 
 from ...core import OrderedDict
 from ...core.util import (match_spec, unique_iterator, safe_unicode,
-                          basestring, max_range)
+                          basestring, max_range, unicode)
 from ...element import Points, Raster, Polygons, HeatMap
 from ..util import compute_sizes, get_sideplot_ranges
 from .element import ElementPlot, ColorbarPlot, LegendPlot
@@ -966,7 +966,7 @@ class BoxPlot(ChartPlot):
         for key, group in groups:
             if element.kdims:
                 key = [k if isinstance(k, basestring) else str(k) for k in key]
-                label = ','.join([safe_unicode(d.pprint_value(v))
+                label = ','.join([unicode(safe_unicode(d.pprint_value(v)))
                                   for d, v in zip(element.kdims, key)])
             else:
                 label = key
